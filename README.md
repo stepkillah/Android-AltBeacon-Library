@@ -6,16 +6,11 @@ A Xamarin.Android binding of the [AltBeacon Android Beacon Library](https://gith
 ## Use
 
 - [Nuget Package](https://www.nuget.org/packages/AndroidAltBeaconLibrary/)
-- [Xamarin Component](http://components.xamarin.com/view/android-altbeacon-library)
-- Download the binary from [Releases](https://github.com/chrisriesgo/Android-AltBeacon-Library/releases)
+- Download the binary from [Releases](https://github.com/stepkillah/Android-AltBeacon-Library/releases)
 
 ## Reference Application
 
-A simple [sample application](https://github.com/chrisriesgo/Android-AltBeacon-Library/tree/master/Samples/Android/AndroidAltBeaconLibrary.Sample) has been included with this repository to demonstrate ranging proximity beacons and a battery-saving background ranging feature.
-
-
-## Xamarin Component
-The [Android AltBeacon Library](http://components.xamarin.com/view/android-altbeacon-library) component is available in the Xamarin Component Store.
+A simple [sample application](https://github.com/stepkillah/Android-AltBeacon-Library/tree/master/Samples/Android/AndroidAltBeaconLibrary.Sample) has been included with this repository to demonstrate ranging proximity beacons and a battery-saving background ranging feature.
 
 ## Changes
 
