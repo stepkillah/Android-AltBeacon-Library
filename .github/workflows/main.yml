@@ -6,6 +6,9 @@ jobs:
   build:
 
     runs-on: macos-latest
+    
+    env:
+      PackVersion: "2.17.1.$GITHUB_RUN_ID"
 
     steps:
     - uses: actions/checkout@v2
@@ -24,5 +27,6 @@ jobs:
     - name: Build
       run: msbuild AndroidAltBeaconLibrary/AndroidAltBeaconLibrary/AndroidAltBeaconLibrary.csproj /p:Configuration=Release
    
-    
-      
+    - name: Pack nuget
+      run: nuget pack NuGet/AndroidAltBeaconLibrary.nuspec -OutputDirectory nuget_pack -version $PackVersion -o
+

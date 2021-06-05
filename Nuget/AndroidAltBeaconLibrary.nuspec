@@ -4,15 +4,15 @@
     <id>AndroidAltBeaconLibrary</id>
     <version>2.10.0.30132-pre1</version>
     <authors>AltBeacon.org</authors>
-    <owners>Chris Riesgo</owners>
-    <projectUrl>https://github.com/chrisriesgo/Android-AltBeacon-Library</projectUrl>
+    <owners>Chris Riesgo, Anton Yaroshenko</owners>
+    <projectUrl>https://github.com/stepkillah/Android-AltBeacon-Library</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A Xamarin Android library providing APIs to interact with beacons.</description>
-    <releaseNotes>https://github.com/chrisriesgo/Android-AltBeacon-Library/releases/tag/v.2.10.0-alpha1</releaseNotes>
+    <releaseNotes>Update metadata</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>android libraries altbeacon beacon ibeacon</tags>
   </metadata>
   <files>
-    <file src="lib/MonoAndroid10/AndroidAltBeaconLibrary.dll" target="lib/MonoAndroid10" />
+    <file src="../AndroidAltBeaconLibrary/AndroidAltBeaconLibrary/bin/Release/AndroidAltBeaconLibrary.dll" target="lib/MonoAndroid10" />
   </files>
 </package>
