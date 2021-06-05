@@ -13,7 +13,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 		{
 			var bytes = HexStringToByteArray("02011a1bff1801beac2f234454cf6d4a0fadf2f4911ba9ffa600010002c509");
 			var parser = new AltBeaconParser();
-			var beacon = parser.FromScanData(bytes, -55, null);
+			var beacon = parser.FromScanData(bytes, -55, null,0);
 			Assert.AreEqual(9, ((AltBeacon) beacon).MfgReserved, "manData should be parsed");
 		}
 		
