@@ -11,6 +11,7 @@
     <releaseNotes>Update metadata</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>android libraries altbeacon beacon ibeacon</tags>
+    <repository type="git" url="https://github.com/stepkillah/Android-AltBeacon-Library"  />
   </metadata>
   <files>
     <file src="../AndroidAltBeaconLibrary/AndroidAltBeaconLibrary/bin/Release/AndroidAltBeaconLibrary.dll" target="lib/MonoAndroid10" />
