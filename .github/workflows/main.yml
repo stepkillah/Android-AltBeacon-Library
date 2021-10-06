@@ -8,7 +8,7 @@ jobs:
     runs-on: macos-latest
     
     env:
-      PackVersion: "2.17.1"
+      PackVersion: "2.19.2"
 
     steps:
     - uses: actions/checkout@v2
