@@ -14,6 +14,10 @@ A simple [sample application](https://github.com/stepkillah/Android-AltBeacon-Li
 
 ## Changes
 
+[v2.19.2](https://github.com/chrisriesgo/Android-AltBeacon-Library/releases/tag/2.7)
+
+- Binding of version [2.19.2](https://mvnrepository.com/artifact/org.altbeacon/android-beacon-library/2.19.2) of the android-beacon-library
+
 _v2.10.0 - [Work in Progress](https://github.com/chrisriesgo/Android-AltBeacon-Library/issues/25)_
 
 [v2.7](https://github.com/chrisriesgo/Android-AltBeacon-Library/releases/tag/2.7)
