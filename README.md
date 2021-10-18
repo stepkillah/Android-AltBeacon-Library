@@ -13,8 +13,11 @@ A Xamarin.Android binding of the [AltBeacon Android Beacon Library](https://gith
 A simple [sample application](https://github.com/stepkillah/Android-AltBeacon-Library/tree/master/Samples/Android/AndroidAltBeaconLibrary.Sample) has been included with this repository to demonstrate ranging proximity beacons and a battery-saving background ranging feature.
 
 ## Changes
+[v2.19.3](https://github.com/stepkillah/Android-AltBeacon-Library/packages/830592)
 
-[v2.19.2](https://github.com/chrisriesgo/Android-AltBeacon-Library/releases/tag/2.7)
+- Binding of version [2.19.3](https://mvnrepository.com/artifact/org.altbeacon/android-beacon-library/2.19.3) of the android-beacon-library
+
+[v2.19.2](https://github.com/stepkillah/Android-AltBeacon-Library/packages/830592)
 
 - Binding of version [2.19.2](https://mvnrepository.com/artifact/org.altbeacon/android-beacon-library/2.19.2) of the android-beacon-library
 
