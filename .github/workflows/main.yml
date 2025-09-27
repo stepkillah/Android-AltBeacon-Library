@@ -25,10 +25,10 @@ jobs:
       run: dotnet restore AndroidAltBeaconLibrary/AndroidAltBeaconLibrary.sln
 
     - name: Build
-      run: dotnet build AndroidAltBeaconLibrary/AndroidAltBeaconLibrary/AndroidAltBeaconLibrary.csproj --configuration Release --no-restore /p:VersionNumber=$PackVersion.$GITHUB_RUN_ID /p:Version=$PackVersion.$GITHUB_RUN_ID
-   
+      run: dotnet build AndroidAltBeaconLibrary/AndroidAltBeaconLibrary/AndroidAltBeaconLibrary.csproj --configuration Release --no-restore /p:Version=$PackVersion-build$GITHUB_RUN_ID
+
     - name: Pack NuGet
-      run: dotnet pack AndroidAltBeaconLibrary/AndroidAltBeaconLibrary/AndroidAltBeaconLibrary.csproj --configuration Release --no-build --output ./nuget_pack /p:PackageVersion=$PackVersion.$GITHUB_RUN_ID
+      run: dotnet pack AndroidAltBeaconLibrary/AndroidAltBeaconLibrary/AndroidAltBeaconLibrary.csproj --configuration Release --no-build --output ./nuget_pack /p:PackageVersion=$PackVersion-build$GITHUB_RUN_ID
 
     - name: Push NuGet
       run: dotnet nuget push ./nuget_pack/*.nupkg --source https://nuget.pkg.github.com/stepkillah/index.json --api-key ${{secrets.GITHUB_TOKEN}} --skip-duplicate
