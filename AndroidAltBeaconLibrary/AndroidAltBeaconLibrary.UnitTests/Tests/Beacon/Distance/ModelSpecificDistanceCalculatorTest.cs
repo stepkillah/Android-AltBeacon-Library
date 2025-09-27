@@ -1,27 +1,26 @@
 ﻿using System;
 using AltBeaconOrg.BoundBeacon.Distance;
 using Android.Content;
-using NUnit.Framework;
+using Xunit;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class ModelSpecificDistanceCalculatorTest
 	{
-		[Test]
+		[Fact]
 	    public void testCalculatesDistance() {	
 	        ModelSpecificDistanceCalculator distanceCalculator = new ModelSpecificDistanceCalculator(null, null);
 	        Double distance = distanceCalculator.CalculateDistance(-59, -59);
 	        AssertEx.AreEqual("Distance should be 1.0 for same power and rssi", 1.0, distance, 0.1);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testSelectsDefaultModel() {
 	        ModelSpecificDistanceCalculator distanceCalculator = new ModelSpecificDistanceCalculator(null, null);
 	        AssertEx.AreEqual("Default model should be Nexus 5", "Nexus 5", distanceCalculator.Model.Model);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testSelectsNexus4OnExactMatch() {
 	        AndroidModel model = new AndroidModel("4.4.2", "KOT49H","Nexus 4","LGE");
 	
@@ -29,7 +28,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("should be Nexus 4", "Nexus 4", distanceCalculator.Model.Model);
 	    }
 	
-		[Test]
+		[Fact]
 		public void testCalculatesDistanceForMotoXPro() {
 			Context applicationContext = Android.App.Application.Context;
 	
@@ -40,8 +39,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 			AssertEx.AreEqual("Distance should be as predicted by coefficients at 3 meters", 2.661125466, distance, 0.1);
 		}
 	
-		[Test]
-		[Ignore("Can't test private methods")]
+		[Fact(Skip = "Can't test private methods")]
 		public void testConcurrentModificationException() {
 			//Context applicationContext = Android.App.Application.Context;
 	

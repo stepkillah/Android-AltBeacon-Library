@@ -47,7 +47,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	    
 	    protected Java.Lang.Object ConvertFromBytes(byte[] bytes)
 	    {
-	        using (var ms = new MemoryStream())
+	        using (var ms = new MemoryStream(bytes))
 	        using (var ois = new ObjectInputStream(ms))
 		    {
 				//var binForm = new BinaryFormatter();

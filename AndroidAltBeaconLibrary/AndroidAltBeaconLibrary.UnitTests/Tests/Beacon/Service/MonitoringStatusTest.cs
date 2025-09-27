@@ -2,11 +2,10 @@
 using AltBeaconOrg.BoundBeacon;
 using AltBeaconOrg.BoundBeacon.Service;
 using Android.Content;
-using NUnit.Framework;
+using Xunit;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class MonitoringStatusTest
 	{
 		//[SetUp]
@@ -14,7 +13,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	    //    BeaconManager.SetsManifestCheckingDisabled(true);
 	    //}
 	
-	    //[Test]
+	    //[Fact]
 	    //public void savesStatusOfUpTo50RegionsTest() {
 	    //    Context context = Android.App.Application.Context;
 	    //    MonitoringStatus monitoringStatus = new MonitoringStatus(context);
@@ -27,7 +26,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	    //    AssertEx.AreEqual("restored regions should be same number as saved", 50, monitoringStatus2.regions().size());
 	    //}
 	
-	    //[Test]
+	    //[Fact]
 	    //public void clearsStatusOfOver50RegionsTest() {
 	    //    Context context = Android.App.Application.Context;
 	    //    MonitoringStatus monitoringStatus = new MonitoringStatus(context);
@@ -40,7 +39,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	    //    AssertEx.AreEqual("restored regions should be none", 0, monitoringStatus2.regions().size());
 	    //}
 	
-	    //[Test]
+	    //[Fact]
 	    //public void refusesToRestoreRegionsIfTooMuchTimeHasPassedSinceSavingTest() {
 	    //    Context context = Android.App.Application.Context;
 	    //    MonitoringStatus monitoringStatus = new MonitoringStatus(context);
@@ -55,7 +54,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	    //    AssertEx.AreEqual("restored regions should be none", 0, monitoringStatus2.regions().size());
 	    //}
 	
-	    //[Test]
+	    //[Fact]
 	    //public void allowsAccessToRegionsAfterRestore() {
 	    //    Context context = Android.App.Application.Context;
 	    //    MonitoringStatus monitoringStatus = new MonitoringStatus(context);

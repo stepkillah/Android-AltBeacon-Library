@@ -1,4 +1,4 @@
-name: Build Xamarin.Android
+name: Build .NET Android MAUI
 
 on: [push]
 
@@ -6,29 +6,29 @@ jobs:
   build:
 
     runs-on: macos-latest
-    
+
     env:
-      PackVersion: "2.19.3"
+      PackVersion: "2.21.1"
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set default Xamarin SDK versions
-      run: |
-        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.1
+    - uses: actions/checkout@v4
 
-    - name: Setup .NET Core SDK 5.0.x
-      uses: actions/setup-dotnet@v1
+    - name: Setup .NET 9
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '5.0.x'
+        dotnet-version: '9.0.x'
 
-    - name: Install dependencies
-      run: nuget restore AndroidAltBeaconLibrary/AndroidAltBeaconLibrary.sln
+    - name: Install MAUI workloads
+      run: dotnet workload install maui-android
+
+    - name: Restore dependencies
+      run: dotnet restore AndroidAltBeaconLibrary/AndroidAltBeaconLibrary.sln
 
     - name: Build
-      run: msbuild AndroidAltBeaconLibrary/AndroidAltBeaconLibrary/AndroidAltBeaconLibrary.csproj /p:Configuration=Release /p:VersionNumber=$PackVersion.$GITHUB_RUN_ID /p:Version=$PackVersion.$GITHUB_RUN_ID
-   
-    - name: Nuget Pack
-      run: nuget pack ./NuGet/AndroidAltBeaconLibrary.nuspec -OutputDirectory ./nuget_pack -version $PackVersion.$GITHUB_RUN_ID
+      run: dotnet build AndroidAltBeaconLibrary/AndroidAltBeaconLibrary/AndroidAltBeaconLibrary.csproj --configuration Release --no-restore /p:Version=$PackVersion-build$GITHUB_RUN_ID
 
-    - name: Nuget Push
-      run: nuget push ./nuget_pack/*.nupkg -Source https://nuget.pkg.github.com/stepkillah/index.json -ApiKey ${{secrets.GITHUB_TOKEN}} -SkipDuplicate -NoSymbols
+    - name: Pack NuGet
+      run: dotnet pack AndroidAltBeaconLibrary/AndroidAltBeaconLibrary/AndroidAltBeaconLibrary.csproj --configuration Release --no-build --output ./nuget_pack /p:PackageVersion=$PackVersion-build$GITHUB_RUN_ID
+
+    - name: Push NuGet
+      run: dotnet nuget push ./nuget_pack/*.nupkg --source https://nuget.pkg.github.com/stepkillah/index.json --api-key ${{secrets.GITHUB_TOKEN}} --skip-duplicate

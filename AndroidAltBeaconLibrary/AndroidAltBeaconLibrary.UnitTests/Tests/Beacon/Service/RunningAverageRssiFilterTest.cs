@@ -1,13 +1,12 @@
 ﻿using System;
-using NUnit.Framework;
+using Xunit;
 using AltBeaconOrg.BoundBeacon.Service;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class RunningAverageRssiFilterTest
 	{
-		[Test]
+		[Fact]
 	    public void initTest1() {
 	        RunningAverageRssiFilter filter = new RunningAverageRssiFilter();
 	        filter.AddMeasurement(new Java.Lang.Integer(-50));

@@ -1,7 +1,9 @@
 Android AltBeacon Library ![](https://ci.appveyor.com/api/projects/status/gpeioj169wbj2n4b?svg=true)
 ==============================
 
-A Xamarin.Android binding of the [AltBeacon Android Beacon Library](https://github.com/AltBeacon/android-beacon-library). This library allows Android apps to interact with BLE beacons in accordance with the open and interoperable [AltBeacon proximity beacon protocol specification](https://github.com/AltBeacon/spec).
+A .NET binding of the [AltBeacon Android Beacon Library](https://github.com/AltBeacon/android-beacon-library). This library allows .NET Android and MAUI apps to interact with BLE beacons in accordance with the open and interoperable [AltBeacon proximity beacon protocol specification](https://github.com/AltBeacon/spec).
+
+**Now supports .NET 9 and MAUI!**
 
 ## Use
 
@@ -13,6 +15,14 @@ A Xamarin.Android binding of the [AltBeacon Android Beacon Library](https://gith
 A simple [sample application](https://github.com/stepkillah/Android-AltBeacon-Library/tree/master/Samples/Android/AndroidAltBeaconLibrary.Sample) has been included with this repository to demonstrate ranging proximity beacons and a battery-saving background ranging feature.
 
 ## Changes
+[v2.21.1 - .NET 9 MAUI]()
+
+- Updated to .NET 9 and MAUI support
+- Binding of version [2.21.1](https://mvnrepository.com/artifact/org.altbeacon/android-beacon-library/2.21.1) of the android-beacon-library
+- Migrated test project from Xamarin.Android NUnitLite to MAUI Android with xUnit
+- Target framework: `net9.0-android`
+- Updated to AndroidX packages
+
 [v2.19.3](https://github.com/stepkillah/Android-AltBeacon-Library/packages/830592)
 
 - Binding of version [2.19.3](https://mvnrepository.com/artifact/org.altbeacon/android-beacon-library/2.19.3) of the android-beacon-library

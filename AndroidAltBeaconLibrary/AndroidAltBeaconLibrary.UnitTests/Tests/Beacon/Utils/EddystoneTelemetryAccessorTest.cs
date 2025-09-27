@@ -1,15 +1,14 @@
 ﻿using System;
-using NUnit.Framework;
+using Xunit;
 using AltBeaconOrg.BoundBeacon;
 using System.Collections.Generic;
 using AltBeaconOrg.BoundBeacon.Utils;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class EddystoneTelemetryAccessorTest : TestBase
 	{
-		[Test]
+		[Fact]
 	    public void testAllowsAccessToTelemetryBytes() {
 	        var telemetryFields = new List<Java.Lang.Long>();
 	        telemetryFields.Add(new Java.Lang.Long(0x01L)); // version
@@ -26,7 +25,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	    }
 	
 	
-	    [Test]
+	    [Fact]
 	    public void testAllowsAccessToBase64EncodedTelemetryBytes() {
 	        var telemetryFields = new List<Java.Lang.Long>();
 	        telemetryFields.Add(new Java.Lang.Long(0x01L)); // version

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using AltBeaconOrg.BoundBeacon;
 using Java.Lang;
-using NUnit.Framework;
+using Xunit;
+using Region = AltBeaconOrg.BoundBeacon.Region;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class RegionTest
 	{
-		[Test]
+		[Fact]
 	    public void testBeaconMatchesRegionWithSameIdentifiers() {
 	        Beacon beacon = new AltBeacon.Builder().SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothAddress("1:2:3:4:5:6").Build();
@@ -17,7 +17,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacon should match region with all identifiers the same", region.MatchesBeacon(beacon));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testBeaconMatchesRegionWithSameIdentifier1() {
 	        Beacon beacon = new AltBeacon.Builder().SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothAddress("1:2:3:4:5:6").Build();
@@ -25,7 +25,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacon should match region with first identifier the same", region.MatchesBeacon(beacon));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testBeaconMatchesRegionWithSameIdentifier1And2() {
 	        Beacon beacon = new AltBeacon.Builder().SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothAddress("1:2:3:4:5:6").Build();
@@ -33,7 +33,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacon should match region with first two identifiers the same", region.MatchesBeacon(beacon));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testBeaconMatchesRegionWithDifferentIdentifier1() {
 	        Beacon beacon = new AltBeacon.Builder().SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothAddress("1:2:3:4:5:6").Build();
@@ -41,7 +41,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacon should not match region with first identifier different", !region.MatchesBeacon(beacon));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testBeaconMatchesRegionWithShorterIdentifierList() {
 	        Beacon beacon = new AltBeacon.Builder().SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothAddress("1:2:3:4:5:6").Build();
@@ -49,7 +49,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacon should match region with first identifier equal and shorter Identifier list", region.MatchesBeacon(beacon));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testBeaconMatchesRegionWithSingleNullIdentifierList() {
 	        Beacon beacon = new AltBeacon.Builder().SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothAddress("1:2:3:4:5:6").Build();
@@ -59,7 +59,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacon should match region with first identifier null and shorter Identifier list", region.MatchesBeacon(beacon));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testBeaconDoesntMatchRegionWithLongerIdentifierList() {
 	        Beacon beacon = new Beacon.Builder().SetId1("1").SetId2("2").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothAddress("1:2:3:4:5:6").Build();
@@ -67,7 +67,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.False("Beacon should not match region with more identifers than the beacon", region.MatchesBeacon(beacon));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testBeaconDoesMatchRegionWithLongerIdentifierListWithSomeNull() {
 	        Beacon beacon = new Beacon.Builder().SetId1("1").SetId2("2").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothAddress("1:2:3:4:5:6").Build();
@@ -75,7 +75,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacon should match region with more identifers than the beacon, if the region identifiers are null", region.MatchesBeacon(beacon));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testBeaconMatchesRegionWithSameBluetoothMac() {
 	        Beacon beacon = new AltBeacon.Builder().SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothAddress("01:02:03:04:05:06").Build();
@@ -83,7 +83,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacon should match region with mac the same", region.MatchesBeacon(beacon));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testBeaconDoesNotMatchRegionWithDiffrentBluetoothMac() {
 	        Beacon beacon = new AltBeacon.Builder().SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothAddress("01:02:03:04:05:06").Build();
@@ -91,7 +91,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.False("Beacon should match region with mac the same", region.MatchesBeacon(beacon));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testBeaconMatchesRegionWithSameBluetoothMacAndIdentifiers() {
 	        Beacon beacon = new AltBeacon.Builder().SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothAddress("01:02:03:04:05:06").Build();
@@ -104,8 +104,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	    }
 	
 	
-	    [Test]
-	    [Ignore("Figure out serialization")]
+	    [Fact(Skip = "Figure out serialization")]
 	    public void testCanSerialize() {
 	        Region region = new Region("myRegion", Identifier.Parse("1"), Identifier.Parse("2"), null);
 	        //TODO: figure out serialization
@@ -119,8 +118,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        //AssertEx.Null("id3 is null after deserialization", region2.GetIdentifier(2));
 	    }
 	
-	    [Test]
-	    [Ignore("Figure out serialization")]
+	    [Fact(Skip = "Figure out serialization")]
 	    public void testCanSerializeWithMac() {
 	        Region region = new Region("myRegion", "1B:2a:03:4C:6E:9F");
 	        //TODO: figure out serialization
@@ -130,7 +128,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        //AssertEx.AreEqual("ac is same after deserialization", region.BluetoothAddress, region2.BluetoothAddress);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void rejectsInvalidMac() {
 	        try {
 	            Region region = new Region("myRegion", "this string is not a valid mac address!");
@@ -144,13 +142,13 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	    }
 	
 	
-	    [Test]
+	    [Fact]
 	    public void testToString() {
 	        Region region = new Region("myRegion", Identifier.Parse("1"), Identifier.Parse("2"), null);
 	        AssertEx.AreEqual("Not equal", "id1: 1 id2: 2 id3: null", region.ToString());
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testConvenienceIdentifierAccessors() {
 	        Region region = new Region("myRegion", Identifier.Parse("1"), Identifier.Parse("2"), Identifier.Parse("3"));
 	        AssertEx.AreEqual("Not equal", "1", region.Id1.ToString());

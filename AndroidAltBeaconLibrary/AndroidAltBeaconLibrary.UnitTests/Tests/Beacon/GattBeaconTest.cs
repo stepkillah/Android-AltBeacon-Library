@@ -4,14 +4,14 @@ using AltBeaconOrg.BoundBeacon;
 using AltBeaconOrg.BoundBeacon.Utils;
 using Android.App;
 using Android.Content;
-using NUnit.Framework;
+using Xunit;
+using Application = Android.App.Application;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-    [TestFixture]
     public class GattBeaconTest : TestBase
     {
-        [Test]
+        [Fact]
         public void TestDetectsGattBeacon()
         {
             byte[] bytes = HexStringToByteArray("020106030334121516341200e72f234454f4911ba9ffa6000000000001000000000000000000000000000000000000000000000000000000000000000000");
@@ -25,7 +25,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
             AssertEx.AreEqual("txPower should be parsed", -66, gattBeacon.TxPower);
         }
 
-        [Test]
+        [Fact]
         public void TestDetectsGattBeacon2MaxLength()
         {
             byte[] bytes = HexStringToByteArray("020106030334121616341210ec007261646975736e6574776f726b7373070000000000000000000000000000000000000000000000000000000000000000");
@@ -38,7 +38,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 
         }
 
-        [Test]
+        [Fact]
         public void TestDetectsGattBeacon2WithShortIdentifier()
         {
             byte[] bytes = HexStringToByteArray("020106030334121516341210ec007261646975736e6574776f726b7307000000000000000000000000000000000000000000000000000000000000000000");
@@ -61,7 +61,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
         }
 
 
-        [Test]
+        [Fact]
         public void TestDetectsEddystoneUID()
         {
             byte[] bytes = HexStringToByteArray("0201060303aafe1516aafe00e700010203040506070809010203040506000000000000000000000000000000000000000000000000000000000000000000");
@@ -71,7 +71,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
         }
 
 
-        [Test]
+        [Fact]
         public void TestDetectsGattBeaconWithCnn()
         {
             byte[] bytes = HexStringToByteArray("020106030334120a16341210ed00636e6e070000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
@@ -84,8 +84,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
                     gattBeacon.Id1.ToByteArray().Length);
         }
 
-        [Test]
-        [Ignore]
+        [Fact(Skip = "Ignored test")]
         public void testBeaconAdvertisingBytes()
         {
             Context context = Application.Context;
@@ -111,10 +110,10 @@ namespace AndroidAltBeaconLibrary.UnitTests
                 byteString += String.Format("{0:x2}", data[i]);
                 byteString += " ";
             }
-            AssertEx.AreEqual("Advertisement bytes should be as expected", "00 25 C5 45 44 52 E2 97 35 32 3D 81 C0 06 05 04 03 02 01 ", byteString);
+            AssertEx.AreEqual("Advertisement bytes should be as expected", "00 25 C5 45 44 52 E2 97 35 32 3D 81 C0 06 05 04 03 02 01 ".ToLower(), byteString);
         }
 
-        [Test]
+        [Fact]
         public void TestDetectsUriBeacon()
         {
             //"https://goo.gl/hqBXE1"
