@@ -1,13 +1,12 @@
 ﻿using System;
 using AltBeaconOrg.BoundBeacon;
-using NUnit.Framework;
+using Xunit;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class BeaconServiceTest
 	{
-		[SetUp]
+		// SetUp method not needed in xUnit - use constructor or IClassFixture instead
 	    public void before() {
 	        BeaconManager.SetsManifestCheckingDisabled(true);
 	    }
@@ -17,8 +16,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	     * affect the size of the available threads in the main Android AsyncTask.THREAD_POOL_EXECUTOR
 	     * @throws Exception
 	     */
-	    [Test]
-	    [Ignore("Can't test real beacons")]
+	    [Fact(Skip = "Can't test real beacons")]
 	    public void beaconScanCallbackTest() {
 	        //final ServiceController<BeaconService> beaconServiceServiceController =
 	        //        Robolectric.buildService(BeaconService.class);

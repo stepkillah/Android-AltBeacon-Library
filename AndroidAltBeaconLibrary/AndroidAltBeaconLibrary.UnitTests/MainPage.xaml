@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="AndroidAltBeaconLibrary.UnitTests.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="AltBeacon Tests">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="20">
+            <Button x:Name="RunTestsButton"
+                    Text="Run Tests"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Clicked="OnRunTestsClicked" />
+
+            <Label x:Name="ResultsLabel"
+                   Text="Click 'Run Tests' to execute xUnit tests..."
+                   FontSize="12"
+                   VerticalOptions="FillAndExpand" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

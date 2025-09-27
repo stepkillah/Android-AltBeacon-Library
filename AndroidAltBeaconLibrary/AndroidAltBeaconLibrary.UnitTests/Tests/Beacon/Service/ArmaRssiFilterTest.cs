@@ -1,13 +1,12 @@
 ﻿using System;
 using AltBeaconOrg.BoundBeacon.Service;
-using NUnit.Framework;
+using Xunit;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class ArmaRssiFilterTest
 	{
-		[Test]
+		[Fact]
 	    public void initTest1() {
 	        ArmaRssiFilter filter = new ArmaRssiFilter();
 	        filter.AddMeasurement(new Java.Lang.Integer(-50));

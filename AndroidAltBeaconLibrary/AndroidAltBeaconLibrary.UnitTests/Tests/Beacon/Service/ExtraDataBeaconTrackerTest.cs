@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using AltBeaconOrg.BoundBeacon;
 using AltBeaconOrg.BoundBeacon.Service;
-using NUnit.Framework;
+using Xunit;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class ExtraDataBeaconTrackerTest
 	{
 		Beacon getManufacturerBeacon() {
@@ -79,7 +78,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	                .Build();
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void trackingManufacturerBeaconReturnsSelf() {
 	        Beacon beacon = getManufacturerBeacon();
 	        ExtraDataBeaconTracker tracker = new ExtraDataBeaconTracker();
@@ -87,7 +86,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("Returns itself", trackedBeacon, beacon);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void gattBeaconExtraDataIsNotReturned() {
 	        Beacon extraDataBeacon = getGattBeaconExtraData();
 	        ExtraDataBeaconTracker tracker = new ExtraDataBeaconTracker();
@@ -95,7 +94,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.Null("trackedBeacon should be null", trackedBeacon);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void gattBeaconExtraDataGetUpdated() {
 	        Beacon beacon = getGattBeacon();
 	        Beacon extraDataBeacon = getGattBeaconExtraData();
@@ -108,7 +107,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("extra data is updated", extraDataBeacon2.DataFields, trackedBeacon.ExtraDataFields);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void gattBeaconExtraDataAreNotOverwritten() {
 	        Beacon beacon = getGattBeacon();
 	        Beacon extraDataBeacon = getGattBeaconExtraData();
@@ -119,7 +118,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("extra data should not be overwritten", extraDataBeacon.DataFields, trackedBeacon.ExtraDataFields);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void gattBeaconFieldsGetUpdated() {
 	        Beacon beacon = getGattBeacon();
 	        Beacon beaconUpdate = getGattBeaconUpdate();
@@ -131,7 +130,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("data fields should be updated", beaconUpdate.DataFields, trackedBeacon.DataFields);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void multiFrameBeaconDifferentServiceUUIDFieldsNotUpdated() {
 	        Beacon beacon = getMultiFrameBeacon();
 	        Beacon beaconUpdate = getMultiFrameBeaconUpdateDifferentServiceUUID();
@@ -143,7 +142,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreNotEqual("data fields should NOT be updated", beaconUpdate.DataFields, trackedBeacon.ExtraDataFields);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void multiFrameBeaconProgramaticParserAssociationDifferentServiceUUIDFieldsGetUpdated() {
 	        Beacon beacon = getMultiFrameBeacon();
 	        Beacon beaconUpdate = getMultiFrameBeaconUpdateDifferentServiceUUID();

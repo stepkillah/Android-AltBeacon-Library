@@ -1,20 +1,19 @@
 ﻿using System;
-using NUnit.Framework;
+using Xunit;
 using AltBeaconOrg.Bluetooth;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class BleAdvertisementTest : TestBase
 	{
-		[Test]
+		[Fact]
 	    public void testCanParsePdusFromAltBeacon() {
 	        byte[] bytes = HexStringToByteArray("02011a1aff1801beac2f234454cf6d4a0fadf2f4911ba9ffa600010002c50900000000000000000000000000000000000000000000000000000000000000");
 	        BleAdvertisement bleAdvert = new BleAdvertisement(bytes);
 	        AssertEx.AreEqual("An AltBeacon advert should have two PDUs", 3, bleAdvert.Pdus.Count);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testCanParsePdusFromOtherBeacon() {
 	        byte[] bytes = HexStringToByteArray("0201060303aafe1516aafe00e72f234454f4911ba9ffa60000000000010c09526164426561636f6e20470000000000000000000000000000000000000000");
 	        BleAdvertisement bleAdvert = new BleAdvertisement(bytes);

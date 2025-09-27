@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using AltBeaconOrg.BoundBeacon;
 using AltBeaconOrg.BoundBeacon.Service.Scanner;
-using NUnit.Framework;
+using Xunit;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class ScanFilterUtilsTest
 	{
-		[Test]
+		[Fact]
 	    public void testGetAltBeaconScanFilter() {
 	        BeaconParser parser = new AltBeaconParser();
 	        BeaconManager.SetsManifestCheckingDisabled(true); // no manifest available in robolectric
@@ -22,7 +21,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("mask should be right", new byte[] {(byte)0xff, (byte)0xff}, sfd.Mask);
 	        AssertEx.AreEqual("filter should be right", new byte[] {(byte)0xbe, (byte)0xac}, sfd.Filter);
 	    }
-	    [Test]
+	    [Fact]
 	    public void testGenericScanFilter() {
 	        BeaconParser parser = new BeaconParser();
 	        parser.SetBeaconLayout("m:2-3=1111,i:4-6,p:24-24");
@@ -36,7 +35,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("filter should be right", new byte[] {(byte)0x11, (byte) 0x11}, sfd.Filter.ToArray());
 	        AssertEx.Null("serviceUuid should be null", sfd.ServiceUuid);
 	    }
-	    [Test]
+	    [Fact]
 	    public void testEddystoneScanFilterData() {
 	        BeaconParser parser = new BeaconParser();
 	        parser.SetBeaconLayout(BeaconParser.EddystoneUidLayout);
@@ -47,7 +46,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("serviceUuid should be right", new Java.Lang.Long(0xfeaa).LongValue(), sfd.ServiceUuid.LongValue());
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void testZeroOffsetScanFilter() {
 	        BeaconParser parser = new BeaconParser();
 	        parser.SetBeaconLayout("m:0-3=11223344,i:4-6,p:24-24");

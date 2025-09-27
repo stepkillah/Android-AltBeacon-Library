@@ -1,23 +1,22 @@
 ﻿using System;
 using AltBeaconOrg.BoundBeacon;
 using Android.OS;
-using NUnit.Framework;
+using Xunit;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class AltBeaconTest : TestBase
 	{
-		[Test]
+		[Fact]
 		public void TestRecognizeBeacon() 
 		{
 			var bytes = HexStringToByteArray("02011a1bff1801beac2f234454cf6d4a0fadf2f4911ba9ffa600010002c509");
 			var parser = new AltBeaconParser();
 			var beacon = parser.FromScanData(bytes, -55, null,0);
-			Assert.AreEqual(9, ((AltBeacon) beacon).MfgReserved, "manData should be parsed");
+			AssertEx.AreEqual("manData should be parsed", 9, ((AltBeacon) beacon).MfgReserved);
 		}
 		
-		[Test]
+		[Fact]
 		public void TestCanSerializeParcelable() 
 		{
 	        var parcel = Parcel.Obtain();
@@ -27,7 +26,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        beacon.WriteToParcel(parcel, 0);
 	        parcel.SetDataPosition(0);
 			var beacon2 = new AltBeacon(parcel);
-	        Assert.AreEqual(((AltBeacon)beacon).MfgReserved, ((AltBeacon)beacon2).MfgReserved, "beaconMfgReserved is same after deserialization");
+	        AssertEx.AreEqual("beaconMfgReserved is same after deserialization", ((AltBeacon)beacon).MfgReserved, ((AltBeacon)beacon2).MfgReserved);
 	    }
 	}
 }

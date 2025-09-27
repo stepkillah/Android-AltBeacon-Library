@@ -1,6 +1,6 @@
 ﻿using AltBeaconOrg.BoundBeacon;
 using Android.OS;
-using NUnit.Framework;
+using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +8,9 @@ using Android.Bluetooth;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-    [TestFixture]
     public class SBeaconTest : TestBase
     {
-        [Test]
+        [Fact]
         public void testDetectsSBeacon()
         {
             byte[] bytes = HexStringToByteArray("02011a1bff1801031501000100c502000000000000000003");

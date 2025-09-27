@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using AltBeaconOrg.BoundBeacon;
 using Android.App;
 using Android.Content;
-using NUnit.Framework;
+using Xunit;
+using Application = Android.App.Application;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class BeaconTransmitterTest
 	{
-		[Test]
-		[Ignore]
+		[Fact(Skip = "TODO: can't actually start transmitter here because Robolectric does not support API 21")]
 	    public void TestBeaconAdvertisingBytes() {
 			Context context = Application.Context;
 	
@@ -35,11 +34,10 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	            byteString += String.Format("{0:x2}", data[i]);
 	            byteString += " ";
 	        }
-	        AssertEx.AreEqual("Advertisement bytes should be as expected", "BE AC 2F 23 44 54 CF 6D 4A 0F AD F2 F4 91 1B A9 FF A6 00 01 00 02 C5 00 ", byteString);
+	        AssertEx.AreEqual("Advertisement bytes should be as expected", "BE AC 2F 23 44 54 CF 6D 4A 0F AD F2 F4 91 1B A9 FF A6 00 01 00 02 C5 00 ".ToLower(), byteString);
 	    }
 
-	    [Test]
-	    [Ignore]
+	    [Fact(Skip = "TODO: can't actually start transmitter here because Robolectric does not support API 21")]
 	    public void TestBeaconAdvertisingBytesForEddystone() {
 	        Context context = Application.Context;
 	
@@ -62,7 +60,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        }
 	        
 	        AssertEx.AreEqual("Data should be 24 bytes long", 18, data.Length);
-	        AssertEx.AreEqual("Advertisement bytes should be as expected", "00 C5 2F 23 44 54 F4 91 1B A9 FF A6 00 00 00 00 00 01 ", byteString);
+	        AssertEx.AreEqual("Advertisement bytes should be as expected", "00 C5 2F 23 44 54 F4 91 1B A9 FF A6 00 00 00 00 00 01 ".ToLower(), byteString);
 	    }
 	}
 }

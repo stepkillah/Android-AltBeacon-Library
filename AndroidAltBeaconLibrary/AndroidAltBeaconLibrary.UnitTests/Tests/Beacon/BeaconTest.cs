@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using AltBeaconOrg.BoundBeacon;
 using AltBeaconOrg.BoundBeacon.Distance;
-using NUnit.Framework;
+using Xunit;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class BeaconTest : TestBase
 	{
-		[SetUp]
-		public void BeforeEachTest()
-		{
-			Beacon.HardwareEqualityEnforced = false;
-		}
+		// xUnit doesn't use SetUp - this would need to be called manually in each test method if needed
+		// public void BeforeEachTest()
+		// {
+		//	Beacon.HardwareEqualityEnforced = false;
+		// }
 		
-		[Test]
+		[Fact]
 		public void TestAccessBeaconIdentifiers() {
 	        Beacon beacon = new AltBeacon.Builder().SetMfgReserved(7).SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6)
@@ -28,7 +27,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("Third beacon id should be 1", beacon.Id3.ToString(), "3");
 	    }
 	    
-	    [Test]
+	    [Fact]
 	    public void TestBeaconsWithSameIdentifersAreEqual() {
 	        Beacon beacon1 = new AltBeacon.Builder().SetMfgReserved(7).SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6)
@@ -40,7 +39,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacons with same identifiers are equal", beacon1.Equals(beacon2));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void TestBeaconsWithDifferentId1AreNotEqual() {
 	        Beacon beacon1 = new AltBeacon.Builder().SetMfgReserved(7).SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6)
@@ -51,7 +50,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacons with different id1 are not equal", !beacon1.Equals(beacon2));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void TestBeaconsWithDifferentId2AreNotEqual() {
 	        Beacon beacon1 = new AltBeacon.Builder().SetMfgReserved(7).SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6)
@@ -62,7 +61,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacons with different id2 are not equal", !beacon1.Equals(beacon2));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void TestBeaconsWithDifferentId3AreNotEqual() {
 	        Beacon beacon1 = new AltBeacon.Builder().SetMfgReserved(7).SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6)
@@ -74,7 +73,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	    }
 	
 	
-	    [Test]
+	    [Fact]
 	    public void TestBeaconsWithSameMacsAreEqual() {
 	        Beacon.HardwareEqualityEnforced = true;
 	        Beacon beacon1 = new AltBeacon.Builder().SetMfgReserved(7).SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
@@ -86,7 +85,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("Beacons with same same macs are equal", beacon1.Equals(beacon2));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void TestBeaconsWithDifferentMacsAreNotEqual() {
 	        Beacon.HardwareEqualityEnforced = true;
 	        Beacon beacon1 = new AltBeacon.Builder().SetMfgReserved(7).SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
@@ -99,28 +98,28 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	    }
 	
 	
-	    [Test]
+	    [Fact]
 	    public void TestCalculateAccuracyWithRssiEqualsPower() {
 	        Beacon.DistanceCalculator = new ModelSpecificDistanceCalculator(null, null);
 	        double accuracy = Beacon.DistanceCalculator.CalculateDistance(-55, -55);
 	        AssertEx.AreEqual("Distance should be one meter if mRssi is the same as power", 1.0, accuracy, 0.1);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void TestCalculateAccuracyWithRssiGreaterThanPower() {
 	        Beacon.DistanceCalculator = new ModelSpecificDistanceCalculator(null, null);
 	        double accuracy = Beacon.DistanceCalculator.CalculateDistance(-55, -50);
 	        AssertEx.True("Distance should be under one meter if mRssi is less negative than power.  Accuracy was " + accuracy, accuracy < 1.0);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void TestCalculateAccuracyWithRssiLessThanPower() {
 	        Beacon.DistanceCalculator = new ModelSpecificDistanceCalculator(null, null);
 	        double accuracy = Beacon.DistanceCalculator.CalculateDistance(-55, -60);
 	        AssertEx.True("Distance should be over one meter if mRssi is less negative than power. Accuracy was "+accuracy,  accuracy > 1.0);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void TestCalculateAccuracyWithRssiEqualsPowerOnInternalProperties() {
 	        Beacon.DistanceCalculator = new ModelSpecificDistanceCalculator(null, null);
 	        var beacon = new Beacon.Builder().SetTxPower(-55).SetRssi(-55).Build();
@@ -128,7 +127,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("Distance should be one meter if mRssi is the same as power", 1.0, distance, 0.1);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void TestCalculateAccuracyWithRssiEqualsPowerOnInternalPropertiesAndRunningAverage() {
 	        var beacon = new Beacon.Builder().SetTxPower(-55).SetRssi(0).Build();
 	        beacon.RunningAverageRssi = -55;
@@ -136,9 +135,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("Distance should be one meter if mRssi is the same as power", 1.0, distance, 0.1);
 	    }
 	
-	    [Test]
-	    [Ignore]
-	    //TODO: Implement ISerializable
+	    [Fact(Skip = "TODO: Implement ISerializable")]
 	    public void TestCanSerialize() {
 	        var beacon = new AltBeacon.Builder().SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothName("xx")
@@ -160,7 +157,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.AreEqual("data field 0 is the right value", beacon.DataFields[0], new Java.Lang.Long(100L));
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void NoDoubleWrappingOfExtraDataFields() {
 	        Beacon beacon = new AltBeacon.Builder().SetId1("1").SetId2("2").SetId3("3").SetRssi(4)
 	                .SetBeaconTypeCode(5).SetTxPower(6).SetBluetoothName("xx")
@@ -170,7 +167,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        AssertEx.True("getter should return same object after first wrap ", beacon.ExtraDataFields == list);
 	    }
 	
-	    [Test]
+	    [Fact]
 	    public void TestHashCodeWithNullIdentifier() {
 	        Beacon beacon = new AltBeacon.Builder()
 	                .SetIdentifiers(new List<Identifier> { Identifier.Parse("0x1234"), null })

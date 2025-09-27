@@ -4,20 +4,18 @@ using AltBeaconOrg.BoundBeacon.Service;
 using System.Collections.Generic;
 using Android.Content;
 using Android.OS;
-using NUnit.Framework;
+using Xunit;
 
 namespace AndroidAltBeaconLibrary.UnitTests
 {
-	[TestFixture]
 	public class RangingDataTest
 	{
-		[SetUp]
-	    public void before() {
-	        BeaconManager.SetsManifestCheckingDisabled(true);
-	    }
+		// xUnit doesn't use SetUp - this would need to be called manually in each test method if needed
+	    // public void before() {
+	    //     BeaconManager.SetsManifestCheckingDisabled(true);
+	    // }
 	
-	    [Test]
-	    [Ignore("Not testing serialization")]
+	    [Fact(Skip = "Not testing serialization")]
 	    public void testSerialization() {
 	        //Context context = Android.App.Application.Context;
 	        //var identifiers = new List<Identifier>();
@@ -38,8 +36,7 @@ namespace AndroidAltBeaconLibrary.UnitTests
 	        //assertEquals("region identifier 1 shouild be restored", "2f234454-cf6d-4a0f-adf2-f4911ba9ffa6", data2.getRegion().getId1().toString());
 	    }
 	
-	    [Test]
-	    [Ignore("Not testing serialization")]
+	    [Fact(Skip = "Not testing serialization")]
 	    // On MacBookPro 2.5 GHz Core I7, 10000 serialization/deserialiation cycles of RangingData took 22ms
 	    public void testSerializationBenchmark() {
 	        //Context context = Android.App.Application.Context;
